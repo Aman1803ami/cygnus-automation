@@ -633,11 +633,11 @@
                 <div class="audit-step-wrapper" id="audit-step-wrapper" style="width: 300%; display: flex; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
                   
                   <!-- STEP 1: Contact Details -->
-                  <div class="audit-step" id="step-one" style="width: 33.333%; flex-shrink: 0; padding-right: 15px;">
+                  <div class="audit-step" id="step-one">
                     <h3 class="audit-step-title">Tell us about your business</h3>
                     <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 2rem;">Please fill out your contact logs to establish a scoped follow-up record.</p>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="audit-form-grid">
                       <div class="audit-form-group">
                         <label class="audit-label" for="audit-name">Full Name</label>
                         <input type="text" id="audit-name" class="audit-input" placeholder="Sarah Connor" required>
@@ -649,7 +649,7 @@
                       </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="audit-form-grid" style="margin-bottom: 0;">
                       <div class="audit-form-group">
                         <label class="audit-label" for="audit-email">Work Email</label>
                         <input type="email" id="audit-email" class="audit-input" placeholder="sarah@skynet.com" required>
@@ -663,7 +663,7 @@
                   </div>
 
                   <!-- STEP 2: Scoping Bottleneck & Hours Slider -->
-                  <div class="audit-step" id="step-two" style="width: 33.333%; flex-shrink: 0; padding-left: 10px; padding-right: 10px;">
+                  <div class="audit-step" id="step-two">
                     <h3 class="audit-step-title">Describe your manual bottleneck challenge</h3>
                     
                     <div class="audit-form-group" style="margin-bottom: 2rem;">
@@ -687,11 +687,11 @@
                   </div>
 
                   <!-- STEP 3: Contact Schedule -->
-                  <div class="audit-step" id="step-three" style="width: 33.333%; flex-shrink: 0; padding-left: 15px;">
+                  <div class="audit-step" id="step-three">
                     <h3 class="audit-step-title">When is the right time to contact you?</h3>
                     <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 2rem;">Please pick a preferred date and time for us to follow up with your custom operational roadmap.</p>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="audit-form-grid">
                       <div class="audit-form-group">
                         <label class="audit-label" for="audit-contact-date">Preferred Date</label>
                         <input type="date" id="audit-contact-date" class="audit-input" required>
