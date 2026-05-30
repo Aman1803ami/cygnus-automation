@@ -259,6 +259,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Set minimum date to today to prevent scheduling in the past
+  const dateInput = document.getElementById('audit-contact-date');
+  if (dateInput) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+  }
+
   // Calculate calculations & display outputs
   const showAuditResults = () => {
     const userName = document.getElementById('audit-name').value.trim();
@@ -516,6 +526,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!dateField.value || !timeField.value) {
           alert('Please pick your preferred follow-up date and time to finish your scoping audit.');
+          return;
+        }
+
+        // Validate that the selected date and time are not in the past
+        const selectedDateTime = new Date(`${dateField.value}T${timeField.value}`);
+        const now = new Date();
+
+        if (selectedDateTime <= now) {
+          alert('No meeting can be scheduled in the past. Please select a future date and time.');
           return;
         }
 
