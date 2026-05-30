@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     discordWebhookUrl: "", 
     
     // Option 2: Live Supabase Database credentials (for 100% serverless, publish-ready hosting on Vercel/Netlify)
-    supabaseUrl: "",
-    supabaseAnonKey: ""
+    supabaseUrl: "https://zilsnjwyfpcrzryktqzc.supabase.co",
+    supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppbHNuand5ZnBjcnpyeWt0cXpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMDkwODQsImV4cCI6MjA5NTY4NTA4NH0.5MkJOdO_E8VZ0b83jxDqkGHsd7k888ScFe9k9YEAK7w"
   };
   
   // ==========================================
