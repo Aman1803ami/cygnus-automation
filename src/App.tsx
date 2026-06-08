@@ -54,6 +54,21 @@ const label = (color = '#22d3ee') => ({
   letterSpacing: '0.28em', textTransform: 'uppercase' as const, color,
 })
 
+function SwanLogo({ color = '#67e8f9', size = 12, style }: { color?: string; size?: number; style?: React.CSSProperties }) {
+  return (
+    <svg viewBox="0 0 120 100" width={size} height={size * 0.82} fill="none" style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0, ...style }}>
+      <polygon points="8,82 88,82 8,52" fill={color} />
+      <polygon points="88,82 88,52 8,52" fill="#fff" opacity="0.6" />
+      <polygon points="8,52 42,52 18,20" fill={color} opacity="0.85" />
+      <polygon points="42,52 65,52 42,28" fill="#fff" opacity="0.7" />
+      <polygon points="65,52 75,52 95,14 85,14" fill={color} />
+      <polygon points="85,14 95,14 100,6 90,6" fill="#fff" opacity="0.9" />
+      <polygon points="100,6 112,10 100,14" fill={color} opacity="0.7" />
+      <circle cx="93" cy="10" r="2" fill="#fff" />
+    </svg>
+  )
+}
+
 /* ═══════════════════════════════════════════════════════
    REUSABLE BITS
 ═══════════════════════════════════════════════════════ */
@@ -140,9 +155,11 @@ export default function App() {
 
         {/* Navbar */}
         <nav style={{ position:'absolute', top:0, left:0, right:0, zIndex:40, display:'flex', justifyContent:'space-between', alignItems:'center' }} className="px-6 sm:px-10 lg:px-16 py-5 lg:py-7">
-          <div style={{ lineHeight:1 }}>
+          <div style={{ lineHeight:1, display:'flex', flexDirection:'column' }}>
             <div style={{ fontFamily:BEBAS, letterSpacing:'0.15em', fontSize:'1.9rem', color:'#fff', textTransform:'uppercase' }}>CYGNUS</div>
-            <div style={{ fontFamily:INTER, letterSpacing:'0.42em', fontSize:'0.58rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2 }}>AUTOMATION</div>
+            <div style={{ fontFamily:INTER, letterSpacing:'0.42em', fontSize:'0.58rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2, display:'flex', alignItems:'center' }}>
+              <SwanLogo size={10} color="#67e8f9" style={{ marginRight:4 }} />UTOMATION
+            </div>
           </div>
           <ul className="hidden md:flex items-center gap-10" style={{ listStyle:'none', margin:0, padding:0 }}>
             {NAV_LINKS.map(l => (
@@ -165,9 +182,11 @@ export default function App() {
         {/* Mobile menu */}
         <div style={{ position:'fixed', inset:0, zIndex:50, background:'rgba(3,4,10,0.98)', backdropFilter:'blur(24px)', display:'flex', flexDirection:'column', opacity:menuOpen?1:0, visibility:menuOpen?'visible':'hidden', transition:'opacity .5s,visibility .5s' }}>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'24px' }}>
-            <div>
+            <div style={{ display:'flex', flexDirection:'column' }}>
               <div style={{ fontFamily:BEBAS, letterSpacing:'0.15em', fontSize:'1.6rem', color:'#fff' }}>CYGNUS</div>
-              <div style={{ fontFamily:INTER, letterSpacing:'0.4em', fontSize:'0.55rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2 }}>AUTOMATION</div>
+              <div style={{ fontFamily:INTER, letterSpacing:'0.4em', fontSize:'0.55rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2, display:'flex', alignItems:'center' }}>
+                <SwanLogo size={9} color="#67e8f9" style={{ marginRight:3 }} />UTOMATION
+              </div>
             </div>
             <button onClick={() => setMenuOpen(false)} className="text-white/60 hover:text-white bg-transparent border-0 cursor-pointer p-1"><X className="w-7 h-7" /></button>
           </div>
@@ -575,9 +594,11 @@ export default function App() {
       ════════════════════════════════════════════════════ */}
       <footer style={{ padding:'48px 0 32px', position:'relative', zIndex:3, background:'transparent', borderTop:'1px solid rgba(255,255,255,0.05)' }}>
         <div style={{ ...wrap, display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:24 }} className="px-6 sm:px-10 lg:px-16">
-          <div>
+          <div style={{ display:'flex', flexDirection:'column' }}>
             <div style={{ fontFamily:BEBAS, letterSpacing:'0.15em', fontSize:'1.5rem', color:'#fff', textTransform:'uppercase' }}>CYGNUS</div>
-            <div style={{ fontFamily:INTER, letterSpacing:'0.4em', fontSize:'0.53rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2 }}>AUTOMATION</div>
+            <div style={{ fontFamily:INTER, letterSpacing:'0.4em', fontSize:'0.53rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2, display:'flex', alignItems:'center' }}>
+              <SwanLogo size={9} color="#67e8f9" style={{ marginRight:3 }} />UTOMATION
+            </div>
           </div>
           <p style={{ fontFamily:INTER, fontSize:'0.75rem', color:'rgba(255,255,255,0.28)', margin:0 }}>
             © {new Date().getFullYear()} Cygnus Automation. All rights reserved.
