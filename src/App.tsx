@@ -157,11 +157,10 @@ export default function App() {
 
         {/* Navbar */}
         <nav style={{ position:'absolute', top:0, left:0, right:0, zIndex:40, display:'flex', justifyContent:'space-between', alignItems:'center' }} className="px-6 sm:px-10 lg:px-16 py-5 lg:py-7">
-          <div style={{ lineHeight:1, display:'flex', alignItems:'center', gap:10 }}>
-            <img src="/favicon.svg" alt="Cygnus Logo" style={{ width:36, height:36, flexShrink:0 }} />
-            <div style={{ display:'flex', flexDirection:'column' }}>
-              <div style={{ fontFamily:BEBAS, letterSpacing:'0.15em', fontSize:'1.9rem', color:'#fff', textTransform:'uppercase', lineHeight:1 }}>CYGNUS</div>
-              <div style={{ fontFamily:INTER, letterSpacing:'0.42em', fontSize:'0.58rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2 }}>AUTOMATION</div>
+          <div style={{ lineHeight:1, display:'flex', flexDirection:'column' }}>
+            <div style={{ fontFamily:BEBAS, letterSpacing:'0.15em', fontSize:'1.9rem', color:'#fff', textTransform:'uppercase' }}>CYGNUS</div>
+            <div style={{ fontFamily:INTER, letterSpacing:'0.42em', fontSize:'0.58rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2, display:'flex', alignItems:'center' }}>
+              <SwanLogo size={10} color="#67e8f9" style={{ marginRight:4 }} />UTOMATION
             </div>
           </div>
           <ul className="hidden md:flex items-center gap-10" style={{ listStyle:'none', margin:0, padding:0 }}>
@@ -603,11 +602,10 @@ export default function App() {
 
             {/* Brand column */}
             <div style={{ marginBottom:32 }}>
-              <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:16 }}>
-                <img src="/favicon.svg" alt="Cygnus Logo" style={{ width:40, height:40, flexShrink:0 }} />
-                <div style={{ display:'flex', flexDirection:'column' }}>
-                  <div style={{ fontFamily:BEBAS, letterSpacing:'0.15em', fontSize:'1.8rem', color:'#fff', textTransform:'uppercase', lineHeight:1 }}>CYGNUS</div>
-                  <div style={{ fontFamily:INTER, letterSpacing:'0.4em', fontSize:'0.55rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2 }}>AUTOMATION</div>
+              <div style={{ display:'flex', flexDirection:'column', marginBottom:16 }}>
+                <div style={{ fontFamily:BEBAS, letterSpacing:'0.15em', fontSize:'1.8rem', color:'#fff', textTransform:'uppercase' }}>CYGNUS</div>
+                <div style={{ fontFamily:INTER, letterSpacing:'0.4em', fontSize:'0.55rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2, display:'flex', alignItems:'center' }}>
+                  <SwanLogo size={9} color="#67e8f9" style={{ marginRight:3 }} />UTOMATION
                 </div>
               </div>
               <p style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', lineHeight:1.8, margin:0, maxWidth:260 }}>
