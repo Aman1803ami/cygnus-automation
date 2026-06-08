@@ -643,13 +643,11 @@ export default function App() {
               <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column', gap:14 }}>
                 <li style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
                   <Mail style={{ width:14, height:14, color:'#22d3ee', flexShrink:0, marginTop:2 }} />
-                  <a href="mailto:kingaman242314@gmail.com" className="hover:text-white transition-colors"
-                    style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', textDecoration:'none', wordBreak:'break-all' }}>kingaman242314@gmail.com</a>
+                  <span style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', wordBreak:'break-all' }}>kingaman242314@gmail.com</span>
                 </li>
                 <li style={{ display:'flex', gap:10, alignItems:'center' }}>
                   <Phone style={{ width:14, height:14, color:'#818cf8', flexShrink:0 }} />
-                  <a href="tel:+918806868260" className="hover:text-white transition-colors"
-                    style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', textDecoration:'none' }}>+91 88068 68260</a>
+                  <span style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)' }}>+91 88068 68260</span>
                 </li>
                 <li style={{ display:'flex', gap:10, alignItems:'center' }}>
                   <MapPin style={{ width:14, height:14, color:'#34d399', flexShrink:0 }} />
