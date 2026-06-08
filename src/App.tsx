@@ -107,20 +107,18 @@ export default function App() {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch('https://formsubmit.co/ajax/kingaman242314@gmail.com', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
-          company: form.company || 'Not provided',
+          company: form.company || '',
           message: form.message,
-          _subject: `New Lead from ${form.name} — Cygnus Automation`,
-          _captcha: 'false'
         })
       })
       const data = await res.json()
-      if (!res.ok || data.success === false) throw new Error('Failed to send. Please try again.')
+      if (!res.ok) throw new Error(data.error || 'Failed to send. Please try again.')
       setSent(true)
     } catch (err: any) {
       console.error('Error sending message:', err)
