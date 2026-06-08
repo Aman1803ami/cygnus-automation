@@ -107,17 +107,17 @@ export default function App() {
     setLoading(true)
     setError(null)
     try {
-      const { error: err } = await supabase
-        .from('leads')
-        .insert([
-          {
-            name: form.name,
-            email: form.email,
-            company: form.company,
-            message: form.message
-          }
-        ])
-      if (err) throw err
+      const res = await fetch('https://formspree.io/f/xvgobyjw', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          message: form.message
+        })
+      })
+      if (!res.ok) throw new Error('Failed to send. Please try again.')
       setSent(true)
     } catch (err: any) {
       console.error('Error sending message:', err)
@@ -479,7 +479,7 @@ export default function App() {
                 <p style={{ fontFamily:INTER, fontSize:'0.85rem', color:'rgba(255,255,255,0.55)', lineHeight:1.75, margin:'0 0 20px' }}>
                   Book a free 30-min strategy call. We'll map your top automation opportunities and show you exactly what's possible with AI.
                 </p>
-                <a href="mailto:kingaman242314@gmail.com"
+                <a href="#contact"
                   className="inline-flex items-center gap-2 hover:bg-cyan-400/10 transition-all duration-300"
                   style={{ fontFamily:INTER, fontWeight:600, fontSize:'0.7rem', letterSpacing:'0.12em', textTransform:'uppercase', color:'#22d3ee', textDecoration:'none', border:'1px solid rgba(34,211,238,0.3)', borderRadius:999, padding:'10px 20px' }}>
                   Book Free Call <ArrowUpRight className="w-3.5 h-3.5" />
@@ -607,23 +607,9 @@ export default function App() {
                   <SwanLogo size={9} color="#67e8f9" style={{ marginRight:3 }} />UTOMATION
                 </div>
               </div>
-              <p style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', lineHeight:1.8, margin:'0 0 24px', maxWidth:260 }}>
+              <p style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', lineHeight:1.8, margin:0, maxWidth:260 }}>
                 We build production-grade AI agents, automation pipelines, and intelligent workflows that scale your business operations.
               </p>
-              {/* Social Icons */}
-              <div style={{ display:'flex', gap:12 }}>
-                {[
-                  { label:'LinkedIn', path:'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z' },
-                  { label:'Twitter/X', path:'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' },
-                  { label:'Instagram', path:'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z' },
-                ].map(s => (
-                  <a key={s.label} href="#" aria-label={s.label}
-                    className="hover:bg-white/15 transition-all duration-300"
-                    style={{ width:36, height:36, borderRadius:10, background:'rgba(255,255,255,0.06)', border:'1px solid rgba(255,255,255,0.08)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                    <svg width={16} height={16} fill="currentColor" viewBox="0 0 24 24" style={{ color:'rgba(255,255,255,0.55)' }}><path d={s.path} /></svg>
-                  </a>
-                ))}
-              </div>
             </div>
 
             {/* Services column */}
@@ -632,8 +618,7 @@ export default function App() {
               <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column', gap:12 }}>
                 {['AI Agent Development','Workflow Automation','LLM Integration','Data & Analytics AI','Process Optimization','AI Strategy'].map(item => (
                   <li key={item}>
-                    <a href="#services" className="hover:text-white transition-colors"
-                      style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', textDecoration:'none', transition:'color .3s' }}>{item}</a>
+                    <span style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)' }}>{item}</span>
                   </li>
                 ))}
               </ul>
