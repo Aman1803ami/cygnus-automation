@@ -100,6 +100,7 @@ export default function App() {
   const [sent, setSent]         = useState(false)
   const [loading, setLoading]   = useState(false)
   const [error, setError]       = useState<string | null>(null)
+  const [legalModal, setLegalModal] = useState<'privacy' | 'terms' | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -592,22 +593,166 @@ export default function App() {
       {/* ════════════════════════════════════════════════════
           FOOTER
       ════════════════════════════════════════════════════ */}
-      <footer style={{ padding:'48px 0 32px', position:'relative', zIndex:3, background:'transparent', borderTop:'1px solid rgba(255,255,255,0.05)' }}>
-        <div style={{ ...wrap, display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:24 }} className="px-6 sm:px-10 lg:px-16">
-          <div style={{ display:'flex', flexDirection:'column' }}>
-            <div style={{ fontFamily:BEBAS, letterSpacing:'0.15em', fontSize:'1.5rem', color:'#fff', textTransform:'uppercase' }}>CYGNUS</div>
-            <div style={{ fontFamily:INTER, letterSpacing:'0.4em', fontSize:'0.53rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2, display:'flex', alignItems:'center' }}>
-              <SwanLogo size={9} color="#67e8f9" style={{ marginRight:3 }} />UTOMATION
+      <footer style={{ position:'relative', zIndex:3, background:'rgba(2,3,10,0.85)', backdropFilter:'blur(12px)', borderTop:'1px solid rgba(255,255,255,0.06)' }}>
+
+        {/* Main footer grid */}
+        <div style={{ ...wrap, padding:'64px 64px 40px' }} className="px-6 sm:px-10 lg:px-16">
+          <div style={{ display:'grid', gridTemplateColumns:'1.8fr 1fr 1fr 1fr', gap:40 }} className="block lg:grid">
+
+            {/* Brand column */}
+            <div style={{ marginBottom:32 }}>
+              <div style={{ display:'flex', flexDirection:'column', marginBottom:16 }}>
+                <div style={{ fontFamily:BEBAS, letterSpacing:'0.15em', fontSize:'1.8rem', color:'#fff', textTransform:'uppercase' }}>CYGNUS</div>
+                <div style={{ fontFamily:INTER, letterSpacing:'0.4em', fontSize:'0.55rem', color:'#67e8f9', textTransform:'uppercase', marginTop:2, display:'flex', alignItems:'center' }}>
+                  <SwanLogo size={9} color="#67e8f9" style={{ marginRight:3 }} />UTOMATION
+                </div>
+              </div>
+              <p style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', lineHeight:1.8, margin:'0 0 24px', maxWidth:260 }}>
+                We build production-grade AI agents, automation pipelines, and intelligent workflows that scale your business operations.
+              </p>
+              {/* Social Icons */}
+              <div style={{ display:'flex', gap:12 }}>
+                {[
+                  { label:'LinkedIn', path:'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z' },
+                  { label:'Twitter/X', path:'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' },
+                  { label:'Instagram', path:'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z' },
+                ].map(s => (
+                  <a key={s.label} href="#" aria-label={s.label}
+                    className="hover:bg-white/15 transition-all duration-300"
+                    style={{ width:36, height:36, borderRadius:10, background:'rgba(255,255,255,0.06)', border:'1px solid rgba(255,255,255,0.08)', display:'flex', alignItems:'center', justifyContent:'center' }}>
+                    <svg width={16} height={16} fill="currentColor" viewBox="0 0 24 24" style={{ color:'rgba(255,255,255,0.55)' }}><path d={s.path} /></svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Services column */}
+            <div style={{ marginBottom:32 }}>
+              <div style={{ fontFamily:INTER, fontWeight:700, fontSize:'0.7rem', letterSpacing:'0.18em', textTransform:'uppercase', color:'rgba(255,255,255,0.35)', marginBottom:18 }}>Services</div>
+              <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column', gap:12 }}>
+                {['AI Agent Development','Workflow Automation','LLM Integration','Data & Analytics AI','Process Optimization','AI Strategy'].map(item => (
+                  <li key={item}>
+                    <a href="#services" className="hover:text-white transition-colors"
+                      style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', textDecoration:'none', transition:'color .3s' }}>{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Company column */}
+            <div style={{ marginBottom:32 }}>
+              <div style={{ fontFamily:INTER, fontWeight:700, fontSize:'0.7rem', letterSpacing:'0.18em', textTransform:'uppercase', color:'rgba(255,255,255,0.35)', marginBottom:18 }}>Company</div>
+              <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column', gap:12 }}>
+                {[{l:'How It Works', h:'#how-it-works'},{l:'Results', h:'#results'},{l:'Client Stories', h:'#testimonials'},{l:'Contact Us', h:'#contact'}].map(item => (
+                  <li key={item.l}>
+                    <a href={item.h} className="hover:text-white transition-colors"
+                      style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', textDecoration:'none', transition:'color .3s' }}>{item.l}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact column */}
+            <div style={{ marginBottom:32 }}>
+              <div style={{ fontFamily:INTER, fontWeight:700, fontSize:'0.7rem', letterSpacing:'0.18em', textTransform:'uppercase', color:'rgba(255,255,255,0.35)', marginBottom:18 }}>Contact</div>
+              <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column', gap:14 }}>
+                <li style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
+                  <Mail style={{ width:14, height:14, color:'#22d3ee', flexShrink:0, marginTop:2 }} />
+                  <a href="mailto:kingaman242314@gmail.com" className="hover:text-white transition-colors"
+                    style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', textDecoration:'none', wordBreak:'break-all' }}>kingaman242314@gmail.com</a>
+                </li>
+                <li style={{ display:'flex', gap:10, alignItems:'center' }}>
+                  <Phone style={{ width:14, height:14, color:'#818cf8', flexShrink:0 }} />
+                  <a href="tel:+918806868260" className="hover:text-white transition-colors"
+                    style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)', textDecoration:'none' }}>+91 88068 68260</a>
+                </li>
+                <li style={{ display:'flex', gap:10, alignItems:'center' }}>
+                  <MapPin style={{ width:14, height:14, color:'#34d399', flexShrink:0 }} />
+                  <span style={{ fontFamily:INTER, fontSize:'0.82rem', color:'rgba(255,255,255,0.45)' }}>Remote-first · Global</span>
+                </li>
+              </ul>
             </div>
           </div>
-          <p style={{ fontFamily:INTER, fontSize:'0.75rem', color:'rgba(255,255,255,0.28)', margin:0 }}>
-            © {new Date().getFullYear()} Cygnus Automation. All rights reserved.
-          </p>
-          <div style={{ display:'flex', gap:24 }}>
-            <a href="#contact" style={{ fontFamily:INTER, fontSize:'0.75rem', color:'rgba(255,255,255,0.38)', textDecoration:'none', transition:'color .3s' }} className="hover:text-white transition-colors">Contact</a>
+        </div>
+
+        {/* Bottom bar */}
+        <div style={{ borderTop:'1px solid rgba(255,255,255,0.05)', padding:'20px 64px' }} className="px-6 sm:px-10 lg:px-16">
+          <div style={{ maxWidth:1280, margin:'0 auto', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:16 }}>
+            <p style={{ fontFamily:INTER, fontSize:'0.72rem', color:'rgba(255,255,255,0.25)', margin:0 }}>
+              © {new Date().getFullYear()} Cygnus Automation. All rights reserved.
+            </p>
+            <div style={{ display:'flex', gap:24 }}>
+              <button onClick={() => setLegalModal('privacy')}
+                style={{ fontFamily:INTER, fontSize:'0.72rem', color:'rgba(255,255,255,0.35)', background:'none', border:'none', cursor:'pointer', transition:'color .3s', padding:0 }}
+                className="hover:text-white transition-colors">Privacy Policy</button>
+              <button onClick={() => setLegalModal('terms')}
+                style={{ fontFamily:INTER, fontSize:'0.72rem', color:'rgba(255,255,255,0.35)', background:'none', border:'none', cursor:'pointer', transition:'color .3s', padding:0 }}
+                className="hover:text-white transition-colors">Terms of Service</button>
+            </div>
           </div>
         </div>
       </footer>
+
+      {/* ════════════════════════════════════════════════════
+          LEGAL MODALS
+      ════════════════════════════════════════════════════ */}
+      {legalModal && (
+        <div
+          style={{ position:'fixed', inset:0, zIndex:200, background:'rgba(2,3,10,0.92)', backdropFilter:'blur(16px)', display:'flex', alignItems:'center', justifyContent:'center', padding:24 }}
+          onClick={() => setLegalModal(null)}>
+          <div
+            style={{ background:'rgba(10,12,28,0.98)', border:'1px solid rgba(255,255,255,0.1)', borderRadius:28, padding:48, maxWidth:680, width:'100%', maxHeight:'80vh', overflowY:'auto', position:'relative' }}
+            onClick={e => e.stopPropagation()}>
+            {/* Close button */}
+            <button onClick={() => setLegalModal(null)}
+              style={{ position:'absolute', top:20, right:20, background:'rgba(255,255,255,0.07)', border:'none', borderRadius:8, width:32, height:32, display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer', color:'rgba(255,255,255,0.5)' }}
+              className="hover:bg-white/15 hover:text-white transition-all">
+              <X style={{ width:14, height:14 }} />
+            </button>
+
+            {legalModal === 'privacy' ? (
+              <>
+                <h2 style={{ fontFamily:BEBAS, fontSize:'2.5rem', letterSpacing:'0.05em', color:'#fff', margin:'0 0 8px' }}>PRIVACY POLICY</h2>
+                <p style={{ fontFamily:INTER, fontSize:'0.72rem', color:'rgba(255,255,255,0.35)', marginBottom:32 }}>Last updated: June 2025</p>
+                {[
+                  { title:'1. Information We Collect', body:'We collect information you voluntarily provide when filling out our contact form, including your name, email address, company name, and message. We may also collect usage data such as IP addresses and browser type for analytics purposes.' },
+                  { title:'2. How We Use Your Information', body:'Your information is used solely to respond to your inquiries, provide our services, and improve your experience. We do not sell, rent, or share your personal data with third parties without your explicit consent.' },
+                  { title:'3. Data Security', body:'We implement industry-standard security measures including encryption in transit and at rest. Your data is stored on secure servers and access is strictly limited to authorized personnel.' },
+                  { title:'4. Cookies', body:'Our website may use cookies to enhance user experience. You may choose to disable cookies through your browser settings. This will not affect your ability to use the website but may limit some functionality.' },
+                  { title:'5. Third-Party Services', body:'We may use third-party services such as Supabase for data storage and Vercel for hosting. These services have their own privacy policies and handle data in accordance with their terms.' },
+                  { title:'6. Your Rights', body:'You have the right to access, correct, or delete your personal data at any time. To exercise these rights, contact us at kingaman242314@gmail.com.' },
+                  { title:'7. Contact', body:'For any privacy-related questions, reach us at kingaman242314@gmail.com or call +91 88068 68260.' },
+                ].map(sec => (
+                  <div key={sec.title} style={{ marginBottom:28 }}>
+                    <h3 style={{ fontFamily:INTER, fontWeight:700, fontSize:'0.9rem', color:'#22d3ee', margin:'0 0 10px' }}>{sec.title}</h3>
+                    <p style={{ fontFamily:INTER, fontSize:'0.85rem', color:'rgba(255,255,255,0.55)', lineHeight:1.8, margin:0 }}>{sec.body}</p>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                <h2 style={{ fontFamily:BEBAS, fontSize:'2.5rem', letterSpacing:'0.05em', color:'#fff', margin:'0 0 8px' }}>TERMS OF SERVICE</h2>
+                <p style={{ fontFamily:INTER, fontSize:'0.72rem', color:'rgba(255,255,255,0.35)', marginBottom:32 }}>Last updated: June 2025</p>
+                {[
+                  { title:'1. Acceptance of Terms', body:'By accessing or using Cygnus Automation\'s website and services, you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.' },
+                  { title:'2. Services Description', body:'Cygnus Automation provides custom AI agent development, workflow automation, LLM integration, and related consulting services. All service scopes are defined in individual project agreements.' },
+                  { title:'3. Intellectual Property', body:'All content, designs, and proprietary AI frameworks developed by Cygnus Automation remain our intellectual property unless explicitly transferred in writing as part of a project agreement.' },
+                  { title:'4. Client Responsibilities', body:'Clients are responsible for providing accurate information, necessary access credentials, and timely feedback during project delivery. Delays caused by the client may affect project timelines.' },
+                  { title:'5. Confidentiality', body:'We treat all client data and business information as strictly confidential. We sign NDAs upon request before any project discovery call. Client data is never used for model training without explicit consent.' },
+                  { title:'6. Limitation of Liability', body:'Cygnus Automation is not liable for indirect, incidental, or consequential damages arising from the use of our services. Our total liability is limited to the fees paid for the specific engagement.' },
+                  { title:'7. Governing Law', body:'These terms are governed by applicable laws. Disputes shall be resolved through good-faith negotiation. If unresolved, arbitration may be sought as a final recourse.' },
+                  { title:'8. Contact', body:'For any terms-related questions, contact us at kingaman242314@gmail.com or call +91 88068 68260.' },
+                ].map(sec => (
+                  <div key={sec.title} style={{ marginBottom:28 }}>
+                    <h3 style={{ fontFamily:INTER, fontWeight:700, fontSize:'0.9rem', color:'#818cf8', margin:'0 0 10px' }}>{sec.title}</h3>
+                    <p style={{ fontFamily:INTER, fontSize:'0.85rem', color:'rgba(255,255,255,0.55)', lineHeight:1.8, margin:0 }}>{sec.body}</p>
+                  </div>
+                ))}
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
